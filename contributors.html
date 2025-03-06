@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contributors - SideGames</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="https://sidegames.app/SideGames-removebg-preview.png" alt="SideGames Logo">
+      </div>
+      <div class="nav-links">
+        <a href="https://sidegames.app/" class="nav-link">Browse Games</a>
+        <a href="https://sidegames.app/upload.html" class="upload-btn">Upload Game</a>
+        <a href="https://sidegames.app/daily.html" class="upload-btn">Daily Game</a>
+        <a href="https://sidegames.app/contributors.html" class="upload-btn active">Contributors</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Our Amazing Contributors</h1>
+      <p>Meet the amazing people behind SideGames who helped make it possible!</p>
+    </section>
+
+    <section class="contributors">
+      <div id="contributorsGrid" class="contributors-grid">
+        <!-- Contributor cards will be populated here -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SideGames. All rights reserved. Discord Server: 
+      <a href="https://discord.gg/X3FPCHcmHC">Join Our Discord</a>
+    </p>
+  </footer>
+
+  <script>
+    fetch('contributors.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch contributor data.');
+        }
+        return response.json();
+      })
+      .then(contributors => {
+        const contributorsGrid = document.getElementById('contributorsGrid');
+        
+        contributors.forEach(contributor => {
+          const contributorCard = document.createElement('div');
+          contributorCard.classList.add('contributor-card');
+          
+          contributorCard.innerHTML = `
+            <img src="${contributor.avatarUrl}" alt="${contributor.name}'s avatar">
+            <h3>${contributor.name}</h3>
+            <p>${contributor.bio}</p>
+          `;
+          
+          contributorsGrid.appendChild(contributorCard);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading contributor data:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong while loading contributor data. Please try again later.'
+        });
+      });
+  </script>
+
+</body>
+</html>

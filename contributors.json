@@ -1,0 +1,13 @@
+[
+    {
+      "name": "John Doe",
+      "avatarUrl": "https://example.com/avatar.jpg",
+      "bio": "Game developer and contributor."
+    },
+    {
+      "name": "Jane Smith",
+      "avatarUrl": "https://example.com/avatar2.jpg",
+      "bio": "Designer and creative mind behind the games."
+    }
+  ]
+  
