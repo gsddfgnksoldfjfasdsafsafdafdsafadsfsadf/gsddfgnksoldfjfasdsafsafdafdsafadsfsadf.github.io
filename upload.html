@@ -1,49 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-82Q5M30DVP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google Analytics -->
+  <script async src=""></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-82Q5M30DVP');
+  </script>
 
-  gtag('config', 'G-82Q5M30DVP');
-</script>
-  <meta name="title" content="SideGames">
-  <meta name="description" content="Side Games is a VR App Store for APK Games and Oculus games, We even allow Gorilla Tag Copies unlike SideQuest!">
-  <meta name="keywords" content="appstore, vr, sidegames,">
-  <meta name="robots" content="index, follow">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="language" content="English">
-  <meta name="author" content="SnakeArmy">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="SideGames">
+  <meta name="description" content="Side Games is a VR App Store for APK Games and Oculus games. We even allow Gorilla Tag Copies unlike SideQuest!">
+  <meta name="keywords" content="appstore, vr, sidegames">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="SnakeArmy">
+
   <title>Upload Game - SideGames</title>
+  
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <style>
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-</style>
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+  <!-- Font Import -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 </head>
 <body>
   <header>
@@ -53,9 +39,9 @@
       </div>
       <div class="nav-links">
         <a href="https://sidegames.app/">Browse Games</a>
-        <a href="https://sidegames.app/upload.html" class="upload-btn active">Upload Game</a>
-        <a href="https://sidegames.app/daily.html" class="upload-btn">Daily Game</a>
-        <a href="https://sidegames.app/contributors.html" class="upload-btn">Contributors</a>
+        <a href="upload.html" class="upload-btn active">Upload Game</a>
+        <a href="daily.html" class="upload-btn">Daily Game</a>
+        <a href="contributors.html" class="upload-btn">Contributors</a>
       </div>
     </nav>
   </header>
@@ -66,31 +52,31 @@
       <p>Share your creation with the SideGames community</p>
       
       <div class="upload-container">
-        <form id="uploadForm">
+        <form id="uploadForm" method="POST" action="/upload" enctype="application/x-www-form-urlencoded">
           <div class="form-group">
-            <label for="gameLink">Game Link / APK Link (use https://apkhost.sidegames.app to get a link)</label>
-            <input type="url" id="gameLink" required placeholder="Enter the link to your game APK">
+            <label for="gameLink">Game Link / APK Link (Host your APK at <a href="https://apkhost.sidegames.app" target="_blank">apkhost.sidegames.app</a>)</label>
+            <input type="url" id="gameLink" name="gameLink" required pattern="https://.*" placeholder="Enter your game's APK link" autocomplete="off">
           </div>
-          
+
           <div class="form-group">
             <label for="gameName">Game Name</label>
-            <input type="text" id="gameName" required placeholder="Enter your game's name">
+            <input type="text" id="gameName" name="gameName" required minlength="3" maxlength="50" placeholder="Enter your game's name" autocomplete="off">
           </div>
 
           <div class="form-group">
             <label for="imageUrl">Game Cover Image URL</label>
-            <input type="url" id="imageUrl" required placeholder="Enter the direct URL to your game's cover image">
+            <input type="url" id="imageUrl" name="imageUrl" required pattern="https://.*" placeholder="Enter the cover image URL" autocomplete="off">
           </div>
 
           <div class="form-group">
             <label for="gameDescription">Game Description</label>
-            <textarea id="gameDescription" required placeholder="Write a short description that explains your game well"></textarea>
+            <textarea id="gameDescription" name="gameDescription" required minlength="20" maxlength="500" placeholder="Describe your game" autocomplete="off"></textarea>
           </div>
-          
+
           <div class="form-group">
             <label>Tags (Select at least one)</label>
             <div class="tag-selection">
-              <button type="button" class="tag-btn" data-tag="gorilla-tag-copy">(🔥VERY HIGH DEMAND) Gorilla Tag Copy</button>
+              <button type="button" class="tag-btn" data-tag="gorilla-tag-copy">(🔥HIGH DEMAND) Gorilla Tag Copy</button>
               <button type="button" class="tag-btn" data-tag="gorilla-tag-fan">Gorilla Tag Fan Game</button>
               <button type="button" class="tag-btn" data-tag="shooter">Shooter</button>
               <button type="button" class="tag-btn" data-tag="simulator">Simulator</button>
@@ -98,33 +84,55 @@
               <button type="button" class="tag-btn" data-tag="multiplayer">Multiplayer</button>
             </div>
           </div>
-          
+
           <div class="form-group">
-            <label for="discordUsername">Discord Username (YOU NEED TO BE IN THE DISCORD SERVER TO BE ACCEPTED)</label>
-            <input type="text" id="discordUsername" required placeholder="Enter your Discord username">
+            <label for="discordUsername">Discord Username (Must be in our Discord server)</label>
+            <input type="text" id="discordUsername" name="discordUsername" required pattern=".*#\d{4}" placeholder="Example: User#1234" autocomplete="off">
           </div>
 
           <div class="form-group">
             <label for="discordInvite">Discord Server Invite</label>
-            <input type="text" id="discordInvite" required placeholder="Enter your Discord Server Invite link (MAKE SURE IT LASTS FOREVER)">
+            <input type="url" id="discordInvite" name="discordInvite" required pattern="https://discord.gg/.*" placeholder="Enter a valid Discord invite link" autocomplete="off">
           </div>
-          
+
           <button type="submit" class="submit-btn">Submit Game</button>
         </form>
 
         <div id="successMessage" style="display: none;" class="success-message">
           <h2>Successfully sent request to accept game!</h2>
           <p>You can go back to the home page here:</p>
-          <a href="https://sidegames.app" class="browse-btn">Browse</a>
+          <a href="/" class="browse-btn">Browse</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 SideGames. All rights reserved.    Discord Server: <a href="https://sidegames.app/discord.html">https://sidegames.app/discord.html</a></p>
+    <p>&copy; 2025 SideGames. All rights reserved. Discord Server: <a href="/discord.html">Join Here</a></p>
   </footer>
 
-  <script src="app.js"></script>
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let formData = new FormData(this);
+      fetch("/upload", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          document.getElementById("successMessage").style.display = "block";
+          this.reset();
+        } else {
+          Swal.fire("Error", data.message, "error");
+        }
+      })
+      .catch(error => {
+        Swal.fire("Error", "Something went wrong. Try again later.", "error");
+      });
+    });
+  </script>
 </body>
 </html>
