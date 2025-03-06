@@ -104,18 +104,27 @@
 
   <script>
     document.getElementById("uploadForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+      event.preventDefault(); // Prevent the default form submission behavior
 
-      let formData = new FormData(this);
-      fetch("https://3.99.219.215:4000/upload", { 
-        method: "POST",
-        body: formData
-      })
+      // Form validation
+      let form = this;
+      if (!form.checkValidity()) {
+        Swal.fire("Error", "Please fill out all required fields correctly.", "error");
+        return;
+      }
+
+      let formData = new FormData(form);
+
+      // Start the request to the server
+      fetch("http://3.99.219.215:4000/upload", {  // Change to HTTP for testing
+  method: "POST",
+  body: formData
+})
       .then(response => response.json())
       .then(data => {
         if (data.success) {
           document.getElementById("successMessage").style.display = "block";
-          this.reset();
+          form.reset();  // Reset form after success
         } else {
           Swal.fire("Error", data.message, "error");
         }
